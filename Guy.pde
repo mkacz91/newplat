@@ -1,16 +1,16 @@
 class Guy
-{   
+{
     PVector position = new PVector();
     PVector velocity = new PVector();
     float radius = 20;
     float angleOfAdhesion = 0.25f * PI;
     boolean supported;
     boolean ascending;
-    ArrayList<Contacts> contacts = new ArrayList<PVector>();
+    ArrayList<Contact> contacts = new ArrayList<Contact>();
     float maxGripAngle = 0.15f * PI;
     float minGripAngle = -maxGripAngle;
     float maxClimbAngle = 0.39f * PI;
-    
+
     float getClimbCoeff(float angle)
     {
         if (angle > 0.5f * PI)
@@ -22,7 +22,7 @@ class Guy
         float t = (angle - maxGripAngle) / (maxClimbAngle - maxGripAngle);
         return 1 - t * t;
     }
-    
+
     float getSlideCoeff(float angle)
     {
          if (angle < -0.5f * PI)
@@ -32,7 +32,7 @@ class Guy
          float t = (minGripAngle - angle) / (minGripAngle - 0.5f * PI);
          return t * t;
     }
-    
+
     boolean touches(Segment segment)
     {
         for (Contact contact : contacts)
@@ -48,7 +48,7 @@ class Contact
 {
     float angle;
     Segment segment;
-    
+
     public Contact(float angle, Segment segment)
     {
         this.angle = angle;
